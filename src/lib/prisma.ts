@@ -1,5 +1,5 @@
 /**
- * ShadowNode — Prisma client singleton.
+ * Hivemind — Prisma client singleton.
  *
  * Avoids exhausting DB connections during Next.js hot-reload in dev by caching
  * the client on the global object.

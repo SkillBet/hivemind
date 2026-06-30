@@ -12,7 +12,7 @@ generator client {
 datasource db {
   // Local dev defaults to SQLite (zero-setup). Production uses PostgreSQL — set
   // DATABASE_URL to a `postgresql://...` string and `DATABASE_PROVIDER=postgresql`.
-  provider = env("DATABASE_PROVIDER", "sqlite")
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 

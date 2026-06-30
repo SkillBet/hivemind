@@ -143,14 +143,14 @@ export default function RatingWorkspace() {
     [task, revealKey, phase],
   );
 
-  const busy = phase === "submitting";
+  const busy = phase !== "idle";
 
   return (
     <div className="relative mx-auto flex w-full max-w-3xl flex-col gap-4">
-      <RatingFlow active={busy} />
+              <RatingFlow active={phase === "submitting" || phase === "revealing"} />
 
       {/* Anonymous banner */}
-      {anonymous && !busy && (
+      {anonymous && phase === "idle" && (
         <div className="flex items-center gap-2 rounded-xl border border-cyan/30 bg-cyan/5 px-4 py-2.5 text-sm text-cyan/90">
           <KeyRound className="h-4 w-4 shrink-0" />
           <span>
@@ -160,7 +160,7 @@ export default function RatingWorkspace() {
       )}
 
       {/* Quota / error */}
-      {(quota || error) && !busy && (
+      {(quota || error) && phase === "idle" && (
         <div className="text-[11px] text-white/40">
           {quota && (
             <span>

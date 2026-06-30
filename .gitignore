@@ -29,6 +29,15 @@ next-env.d.ts.bak
 *.pem
 Thumbs.db
 
+# Windows reserved-name accidents (a stray "nul" file poisons `git add`)
+nul
+
+# Local dev/build noise — never commit
+dev-run.log
+dev-start.log
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
 # debug
 npm-debug.log*
 yarn-debug.log*

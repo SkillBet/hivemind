@@ -1,8 +1,8 @@
 /**
- * ShadowNode — typed client-side fetch wrapper.
+ * Hivemind — typed client-side fetch wrapper.
  *
  * Automatically attaches the caller's wallet address (from the cookie set by
- * WalletButton) so server routes can resolve tier + quota.
+ * WalletButton) so server routes can resolve identity + quota.
  */
 
 export interface ApiError {
@@ -13,7 +13,7 @@ export interface ApiError {
 
 function walletFromCookie(): string | undefined {
   if (typeof document === "undefined") return undefined;
-  const match = document.cookie.match(/(?:^|;\s*)sn_wallet=([^;]+)/);
+  const match = document.cookie.match(/(?:^|;\s*)hive_wallet=([^;]+)/);
   return match?.[1];
 }
 

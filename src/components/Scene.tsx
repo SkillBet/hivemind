@@ -5,7 +5,7 @@
  *
  * A crystalline icosahedron (the hive mind) with a pulsing emissive core,
  * surrounded by orbital rings and a sparse starfield. Reacts to hover (brighten
- * + accelerate) and to an optional "encrypting" prop (particle inflow via
+ * + accelerate) and to an optional "sealing" prop (particle inflow via
  * Sparkles). Bloom post-processing for the diamond-glass look. Performance-minded:
  * frustum-culled, damped OrbitControls, reduced-motion aware.
  */
@@ -35,7 +35,7 @@ function usePrefersReducedMotion(): boolean {
 // The crystal + pulsing core
 // ---------------------------------------------------------------------------
 
-function EnclaveCrystal({ hovered, encrypting }: { hovered: boolean; encrypting: boolean }) {
+function HiveCrystal({ hovered, sealing }: { hovered: boolean; sealing: boolean }) {
   const group = useRef<Group>(null);
   const crystal = useRef<Mesh>(null);
   const core = useRef<Mesh>(null);
@@ -43,7 +43,7 @@ function EnclaveCrystal({ hovered, encrypting }: { hovered: boolean; encrypting:
 
   useFrame((state, delta) => {
     const speedMul = hovered ? 2.2 : 1;
-    const burst = encrypting ? 2.6 : 1;
+    const burst = sealing ? 2.6 : 1;
 
     if (group.current) {
       group.current.rotation.y += delta * 0.15 * speedMul;
@@ -52,9 +52,9 @@ function EnclaveCrystal({ hovered, encrypting }: { hovered: boolean; encrypting:
       crystal.current.rotation.x += delta * 0.05 * speedMul;
       crystal.current.rotation.z += delta * 0.03 * speedMul;
     }
-    // Pulsing core — emissive intensity oscillates; bursts while encrypting.
+    // Pulsing core — emissive intensity oscillates; bursts while sealing.
     const t = state.clock.elapsedTime;
-    const pulse = 0.5 + 0.5 * Math.sin(t * (encrypting ? 6 : 1.8));
+    const pulse = 0.5 + 0.5 * Math.sin(t * (sealing ? 6 : 1.8));
     if (coreMat.current) {
       coreMat.current.emissiveIntensity = (0.6 + pulse * 1.4) * burst;
     }
@@ -109,7 +109,7 @@ function EnclaveCrystal({ hovered, encrypting }: { hovered: boolean; encrypting:
 }
 
 // ---------------------------------------------------------------------------
-// Orbital encryption rings
+// Orbital consensus rings
 // ---------------------------------------------------------------------------
 
 function OrbitalRings({ hovered }: { hovered: boolean }) {
@@ -155,7 +155,7 @@ function OrbitalRings({ hovered }: { hovered: boolean }) {
 // Full scene
 // ---------------------------------------------------------------------------
 
-function SceneContents({ encrypting }: { encrypting: boolean }) {
+function SceneContents({ sealing }: { sealing: boolean }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -170,14 +170,14 @@ function SceneContents({ encrypting }: { encrypting: boolean }) {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <EnclaveCrystal hovered={hovered} encrypting={encrypting} />
+          <HiveCrystal hovered={hovered} sealing={sealing} />
         </group>
       </Float>
 
       <OrbitalRings hovered={hovered} />
 
-      {/* Particle inflow while a message is being sealed */}
-      {encrypting && (
+      {/* Particle inflow while a vote is being sealed */}
+      {sealing && (
         <Sparkles
           count={120}
           scale={10}
@@ -216,7 +216,7 @@ function SceneContents({ encrypting }: { encrypting: boolean }) {
   );
 }
 
-export default function Scene({ encrypting = false }: { encrypting?: boolean }) {
+export default function Scene({ sealing = false }: { sealing?: boolean }) {
   const reduced = usePrefersReducedMotion();
 
   return (
@@ -233,7 +233,7 @@ export default function Scene({ encrypting = false }: { encrypting?: boolean }) 
         <color attach="background" args={["#000000"]} />
         <fog attach="fog" args={["#000000", 8, 22]} />
         <Suspense fallback={null}>
-          <SceneContents encrypting={reduced ? false : encrypting} />
+          <SceneContents sealing={reduced ? false : sealing} />
         </Suspense>
       </Canvas>
     </div>

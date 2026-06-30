@@ -18,7 +18,7 @@ export default function ContributorTiers({ currentTierId }: ContributorTiersProp
   return (
     <div className="grid gap-6 md:grid-cols-3">
       {CONTRIBUTOR_TIER_LIST.map((tier, i) => {
-        const featured = tier.id === "silver";
+        const featured = tier.id === "gold";
         const isCurrent = currentTierId === tier.id;
         return (
           <motion.div

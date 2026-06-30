@@ -15,7 +15,7 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // ShadowNode design tokens
+        // Hivemind design tokens
         void: "#000000",
         abyss: "#0a0a0f",
         slate9: "#0f172a",

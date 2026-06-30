@@ -16,7 +16,7 @@ export function WalletButton() {
   const { address, isConnected } = useAccount();
 
   // Expose the active address to server routes via a cookie so fetch() in
-  // Playground/Dashboard picks it up automatically.
+  // Rating/Dashboard picks it up automatically.
   useEffect(() => {
     if (isConnected && address) {
       document.cookie = `hive_wallet=${address}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;

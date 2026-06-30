@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { TOKEN } from "@/lib/constants";
 import RatingWorkspace from "@/components/RatingWorkspace";
 
 const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
@@ -19,7 +20,7 @@ export default function RatePage() {
         </h1>
         <p className="mb-8 max-w-md text-center text-sm text-white/50">
           Pick the better AI response. Your vote is sealed before it leaves your browser.
-          Match the consensus to earn {process.env.NEXT_PUBLIC_TOKEN_SYMBOL ?? "$CORTEX"}.
+          Match the consensus to earn {TOKEN.symbol}.
         </p>
         <RatingWorkspace />
       </div>
