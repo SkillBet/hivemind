@@ -1,0 +1,108 @@
+// Hivemind schema — Train-to-Earn human-intelligence network.
+//
+// Users earn $CORTEX by rating AI outputs (pairwise preference tasks). The
+// rating itself is sealed client-side (commit-reveal) so neither the operator
+// nor early raters can bias consensus. Rewards flow when a rater's sealed vote
+// matches the crowd majority.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Local dev defaults to SQLite (zero-setup). Production uses PostgreSQL — set
+  // DATABASE_URL to a `postgresql://...` string and `DATABASE_PROVIDER=postgresql`.
+  provider = env("DATABASE_PROVIDER", "sqlite")
+  url      = env("DATABASE_URL")
+}
+
+/// A contributor (or future buyer). Identified by wallet address.
+model User {
+  id            String   @id @default(cuid())
+  walletAddress String?  @unique
+  email         String?  @unique
+  tier          String   @default("free") // dormant — reserved for v2 buyer tiers
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // $CORTEX economy (off-chain points in v1; v2 upgrades to on-chain ERC-20).
+  cortexBalance Int  @default(0) // whole $CORTEX units
+  reputation    Int  @default(100) // bounded [reputationFloor, reputationCeiling]
+  ratingsCount  Int  @default(0) // total ratings submitted
+  consensusHits Int  @default(0) // ratings that matched consensus
+
+  ratings  Rating[]
+  earnings Earning[]
+
+  @@index([walletAddress])
+  @@index([cortexBalance])
+}
+
+/// A pairwise preference task: a prompt + two model responses (A vs B).
+/// Buyers (AI labs) create these in v2; v1 seeds them.
+model Task {
+  id              String   @id @default(cuid())
+  prompt          String
+  modelA          String
+  responseA       String
+  modelB          String
+  responseB       String
+  category        String // one of TASK_CATEGORIES
+  difficulty      String   @default("standard") // easy | standard | hard
+  rewardBase      Int      @default(10) // $CORTEX for a consensus match (pre-multiplier)
+  status          String   @default("open") // open | resolved
+  /// The crowd's majority choice once resolved. a | b | null.
+  consensusChoice String?
+  /// Count of sealed ratings committed so far.
+  raterCount      Int      @default(0)
+  createdAt       DateTime @default(now())
+  /// When the task auto-resolves / closes regardless of count.
+  closesAt        DateTime
+
+  ratings Rating[]
+
+  @@index([status])
+  @@index([category])
+  @@index([createdAt])
+}
+
+/// A sealed rating (commit-reveal). `encryptedPayload` holds the rater's choice
+/// sealed with the network reveal key; `choice` is filled only after reveal.
+model Rating {
+  id             String    @id @default(cuid())
+  task           Task      @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+  /// Commit-reveal sealed choice (opaque to the server until the batch reveals).
+  encryptedPayload String
+  /// The revealed choice. a | b. Null until reveal.
+  choice         String?
+  revealed       Boolean   @default(false)
+  /// Did this vote match the consensus? Null until the task resolves.
+  isConsensus    Boolean?
+  /// $CORTEX awarded for this rating.
+  rewardAwarded  Int       @default(0)
+  submittedAt    DateTime  @default(now())
+  revealedAt     DateTime?
+
+  @@unique([taskId, userId])
+  @@index([taskId])
+  @@index([userId])
+}
+
+/// Ledger of every $CORTEX award. Powers the earnings dashboard + CSV export.
+model Earning {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  taskId    String?
+  amount    Int
+  reason    String // consensus | participation | bonus
+  dayKey    String // YYYY-MM-DD for fast daily aggregation
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([dayKey])
+  @@index([createdAt])
+}

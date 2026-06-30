@@ -1,0 +1,57 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+next-env.d.ts.bak
+
+# production
+/build
+
+# database
+/prisma/migrations/dev.db*
+/prisma/*.db
+/prisma/*.db-journal
+*.db
+*.db-journal
+
+# env
+.env
+.env*.local
+.env.development
+.env.production
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dev-*.log
+nul
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# artifacts
+/coverage
+/public/models/large*
+
+# Hivemind local dev reveal key (auto-generated, never commit)
+.tee-dev-key.json
+.hive-reveal-key.json
