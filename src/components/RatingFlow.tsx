@@ -60,7 +60,7 @@ export default function RatingFlow({ active }: { active: boolean }) {
             exit={{ scale: 0.95, y: 10 }}
             className="glass w-[min(92vw,420px)] rounded-2xl p-6"
           >
-            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-cyan">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-hive">
               <Lock className="h-4 w-4" />
               Sealing your vote
             </div>
@@ -80,7 +80,7 @@ export default function RatingFlow({ active }: { active: boolean }) {
                       className={cn(
                         "flex h-7 w-7 items-center justify-center rounded-lg border transition-colors",
                         done && "border-ok/40 bg-ok/10 text-ok",
-                        current && "border-cyan/50 bg-cyan/10 text-cyan shadow-glow-sm",
+                        current && "border-hive/50 bg-hive/10 text-hive shadow-glow-sm",
                         !done && !current && "border-white/10 bg-white/5 text-white/40",
                       )}
                     >

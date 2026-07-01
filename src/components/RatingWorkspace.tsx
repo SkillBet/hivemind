@@ -151,7 +151,7 @@ export default function RatingWorkspace() {
 
       {/* Anonymous banner */}
       {anonymous && phase === "idle" && (
-        <div className="flex items-center gap-2 rounded-xl border border-cyan/30 bg-cyan/5 px-4 py-2.5 text-sm text-cyan/90">
+        <div className="flex items-center gap-2 rounded-xl border border-hive/30 bg-hive/5 px-4 py-2.5 text-sm text-hive/90">
           <KeyRound className="h-4 w-4 shrink-0" />
           <span>
             Previewing a task. <strong>Connect a wallet</strong> to seal your vote and earn $CORTEX.
@@ -178,7 +178,7 @@ export default function RatingWorkspace() {
       {/* Task card */}
       {loadingTask ? (
         <div className="flex h-64 items-center justify-center rounded-2xl glass">
-          <Loader2 className="h-6 w-6 animate-spin text-cyan/60" />
+          <Loader2 className="h-6 w-6 animate-spin text-hive/60" />
         </div>
       ) : !task ? (
         <EmptyState onReload={loadNext} />
@@ -201,7 +201,7 @@ export default function RatingWorkspace() {
                   <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 capitalize text-white/60">
                     {task.difficulty}
                   </span>
-                  <span className="rounded-md border border-cyan/30 bg-cyan/5 px-2 py-0.5 text-cyan">
+                  <span className="rounded-md border border-hive/30 bg-hive/5 px-2 py-0.5 text-hive">
                     +{task.rewardBase}–{Math.round(task.rewardBase * 2)} $CORTEX
                   </span>
                   <span className="ml-auto inline-flex items-center gap-1 text-white/40">
@@ -219,7 +219,7 @@ export default function RatingWorkspace() {
                   text={task.responseA}
                   onPick={() => vote("a")}
                   disabled={busy || anonymous}
-                  accent="cyan"
+                  accent="hive"
                 />
                 <ResponseCard
                   label="B"
@@ -266,10 +266,10 @@ function ResponseCard({
   text: string;
   onPick: () => void;
   disabled?: boolean;
-  accent: "cyan" | "violet";
+  accent: "hive" | "violet";
 }) {
-  const ring = accent === "cyan" ? "hover:border-cyan/50 hover:shadow-glow-sm" : "hover:border-violet/50";
-  const badge = accent === "cyan" ? "bg-cyan/15 text-cyan" : "bg-violet-500/15 text-violet-300";
+  const ring = accent === "hive" ? "hover:border-hive/50 hover:shadow-glow-sm" : "hover:border-violet/50";
+  const badge = accent === "hive" ? "bg-hive/15 text-hive" : "bg-violet-500/15 text-violet-300";
   return (
     <div className={cn("group flex flex-col rounded-xl border border-white/10 bg-white/5 p-4 transition-all", ring)}>
       <div className="mb-2 flex items-center justify-between">
@@ -302,7 +302,7 @@ function OutcomeCard({ outcome, onContinue }: { outcome: Outcome; onContinue: ()
         animate={{ opacity: 1, scale: 1 }}
         className="rounded-2xl glass p-8 text-center"
       >
-        <Loader2 className="mx-auto mb-3 h-8 w-8 animate-spin text-cyan/60" />
+        <Loader2 className="mx-auto mb-3 h-8 w-8 animate-spin text-hive/60" />
         <h3 className="text-lg font-semibold text-white">Vote committed.</h3>
         <p className="mt-1 text-sm text-white/50">
           {outcome.reason ?? "Awaiting enough raters to reveal consensus."}
@@ -337,12 +337,12 @@ function OutcomeCard({ outcome, onContinue }: { outcome: Outcome; onContinue: ()
       </h3>
       <p className="mt-1 text-sm text-white/50">
         Consensus picked{" "}
-        <strong className="text-cyan">{outcome.consensusChoice?.toUpperCase()}</strong>. You picked{" "}
+        <strong className="text-hive">{outcome.consensusChoice?.toUpperCase()}</strong>. You picked{" "}
         <strong>{outcome.yourChoice?.toUpperCase()}</strong>.
       </p>
-      <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/5 px-4 py-1.5 text-sm">
-        <Hexagon className="h-4 w-4 text-cyan" />
-        <span className="font-semibold text-cyan">+{outcome.reward ?? 0}</span>
+      <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-hive/30 bg-hive/5 px-4 py-1.5 text-sm">
+        <Hexagon className="h-4 w-4 text-hive" />
+        <span className="font-semibold text-hive">+{outcome.reward ?? 0}</span>
         <span className="text-white/60">{TOKEN.symbol} earned</span>
       </div>
       <div className="mt-6">
@@ -360,13 +360,13 @@ function OutcomeCard({ outcome, onContinue }: { outcome: Outcome; onContinue: ()
 function EmptyState({ onReload }: { onReload: () => void }) {
   return (
     <div className="flex h-64 flex-col items-center justify-center rounded-2xl glass text-center">
-      <Hexagon className="mb-3 h-10 w-10 text-cyan/40" />
+      <Hexagon className="mb-3 h-10 w-10 text-hive/40" />
       <p className="max-w-sm text-sm text-white/50">
         No tasks available right now. New preference tasks are added regularly — check back soon.
       </p>
       <button
         onClick={onReload}
-        className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan/40 bg-cyan/10 px-4 py-2 text-sm text-cyan hover:bg-cyan/20"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl border border-hive/40 bg-hive/10 px-4 py-2 text-sm text-hive hover:bg-hive/20"
       >
         <Loader2 className="h-3.5 w-3.5" /> Refresh
       </button>

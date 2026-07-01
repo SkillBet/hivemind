@@ -24,11 +24,11 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-cyan/10 shadow-glow-sm">
-            <Hexagon className="h-5 w-5 text-cyan" />
+          <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-hive/10 shadow-glow-sm">
+            <Hexagon className="h-5 w-5 text-hive" />
           </span>
           <span className="text-lg font-semibold tracking-tight text-white">
-            Hive<span className="text-cyan">mind</span>
+            Hive<span className="text-hive">mind</span>
           </span>
         </Link>
 

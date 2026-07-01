@@ -41,7 +41,7 @@ export function WalletButton() {
                     <button
                       onClick={openConnectModal}
                       type="button"
-                      className="rounded-xl border border-cyan/40 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition-all hover:bg-cyan/20 hover:shadow-glow-sm"
+                      className="rounded-xl border border-hive/40 bg-hive/10 px-4 py-2 text-sm font-medium text-hive transition-all hover:bg-hive/20 hover:shadow-glow-sm"
                     >
                       Connect Wallet
                     </button>

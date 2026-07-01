@@ -17,7 +17,8 @@ import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import type { Group, Mesh, MeshPhysicalMaterial } from "three";
 import * as THREE from "three";
 
-const CYAN = "#00f0ff";
+const HIVE_YELLOW = "#facc15";
+const HIVE_AMBER = "#fbbf24";
 
 function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
@@ -69,7 +70,7 @@ function HiveCrystal({ hovered, sealing }: { hovered: boolean; sealing: boolean 
       {/* Diamond-glass crystal shell */}
       <Icosahedron ref={crystal} args={[1.5, 1]}>
         <meshPhysicalMaterial
-          color={CYAN}
+          color={HIVE_YELLOW}
           transmission={0.95}
           thickness={2.2}
           roughness={0.08}
@@ -80,9 +81,9 @@ function HiveCrystal({ hovered, sealing }: { hovered: boolean; sealing: boolean 
           reflectivity={0.6}
           transparent
           opacity={0.85}
-          emissive={CYAN}
+          emissive={HIVE_AMBER}
           emissiveIntensity={hovered ? 0.25 : 0.08}
-          attenuationColor={CYAN}
+          attenuationColor={HIVE_YELLOW}
           attenuationDistance={1.2}
         />
       </Icosahedron>
@@ -91,8 +92,8 @@ function HiveCrystal({ hovered, sealing }: { hovered: boolean; sealing: boolean 
       <Sphere ref={core} args={[1, 48, 48]}>
         <meshPhysicalMaterial
           ref={coreMat}
-          color={CYAN}
-          emissive={CYAN}
+          color={HIVE_YELLOW}
+          emissive={HIVE_AMBER}
           emissiveIntensity={1.4}
           roughness={0.2}
           metalness={0}
@@ -102,7 +103,7 @@ function HiveCrystal({ hovered, sealing }: { hovered: boolean; sealing: boolean 
 
       {/* Wireframe scaffold for extra geometric texture */}
       <Icosahedron args={[1.52, 1]}>
-        <meshBasicMaterial color={CYAN} wireframe transparent opacity={hovered ? 0.25 : 0.12} />
+        <meshBasicMaterial color={HIVE_YELLOW} wireframe transparent opacity={hovered ? 0.25 : 0.12} />
       </Icosahedron>
     </group>
   );
@@ -138,8 +139,8 @@ function OrbitalRings({ hovered }: { hovered: boolean }) {
           rotation={c.axis}
         >
           <meshStandardMaterial
-            color={CYAN}
-            emissive={CYAN}
+            color={HIVE_YELLOW}
+            emissive={HIVE_AMBER}
             emissiveIntensity={hovered ? 1.2 : 0.6}
             transparent
             opacity={c.op}
@@ -161,7 +162,7 @@ function SceneContents({ sealing }: { sealing: boolean }) {
   return (
     <>
       <ambientLight intensity={0.4} />
-      <pointLight position={[6, 6, 6]} intensity={40} color={CYAN} />
+      <pointLight position={[6, 6, 6]} intensity={40} color={HIVE_YELLOW} />
       <pointLight position={[-6, -4, -2]} intensity={25} color="#0891b2" />
       <directionalLight position={[0, 5, 5]} intensity={0.6} color="#ffffff" />
 
@@ -184,7 +185,7 @@ function SceneContents({ sealing }: { sealing: boolean }) {
           size={4}
           speed={0.6}
           opacity={0.8}
-          color={CYAN}
+          color={HIVE_YELLOW}
           noise={1.5}
         />
       )}

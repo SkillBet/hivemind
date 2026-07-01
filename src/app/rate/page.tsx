@@ -16,7 +16,7 @@ export default function RatePage() {
       <Scene />
       <div className="absolute inset-0 z-10 flex flex-col items-center px-4 pt-28 pb-16">
         <h1 className="mb-2 text-center text-3xl font-bold leading-tight md:text-4xl">
-          The <span className="text-cyan">Rating</span> Workspace
+          The <span className="text-hive">Rating</span> Workspace
         </h1>
         <p className="mb-8 max-w-md text-center text-sm text-white/50">
           Pick the better AI response. Your vote is sealed before it leaves your browser.

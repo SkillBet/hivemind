@@ -47,7 +47,7 @@ export default function Leaderboard({ limit = 10 }: { limit?: number }) {
   if (loading) {
     return (
       <div className="glass-card flex items-center justify-center py-12">
-        <Loader2 className="h-6 w-6 animate-spin text-cyan/60" />
+        <Loader2 className="h-6 w-6 animate-spin text-hive/60" />
       </div>
     );
   }
@@ -89,7 +89,7 @@ export default function Leaderboard({ limit = 10 }: { limit?: number }) {
                   animate={{ opacity: 1 }}
                   className={cn(
                     "border-b border-white/5 font-mono text-xs",
-                    isYou && "bg-cyan/5",
+                    isYou && "bg-hive/5",
                   )}
                 >
                   <td className="px-5 py-3 pr-4">
@@ -111,13 +111,13 @@ export default function Leaderboard({ limit = 10 }: { limit?: number }) {
                         {e.walletAddress ? shortHash(e.walletAddress, 6, 4) : "Anon"}
                       </span>
                       {isYou && (
-                        <span className="rounded bg-cyan/20 px-1.5 py-0.5 text-[9px] font-bold text-cyan">
+                        <span className="rounded bg-hive/20 px-1.5 py-0.5 text-[9px] font-bold text-hive">
                           YOU
                         </span>
                       )}
                     </div>
                   </td>
-                  <td className="px-2 py-3 pr-4 text-right font-semibold text-cyan">
+                  <td className="px-2 py-3 pr-4 text-right font-semibold text-hive">
                     {e.cortexBalance.toLocaleString()}
                   </td>
                   <td className="px-2 py-3 pr-4 text-right text-white/60">

@@ -58,13 +58,13 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/5 px-3 py-1 text-xs text-cyan/80">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-hive/30 bg-hive/5 px-3 py-1 text-xs text-hive/80">
               <Hexagon className="h-3.5 w-3.5" /> Train-to-Earn · Base network
             </span>
           </motion.div>
 
           <h1 className="mb-6 text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl">
-            <span className="text-gradient-cyan">Train the AI.</span>
+            <span className="text-gradient-hive">Train the AI.</span>
             <br />
             <span className="text-glow">Earn {TOKEN.symbol}.</span>
           </h1>
@@ -79,7 +79,7 @@ export default function HomePage() {
             <Link href="/rate" className="btn-glow inline-flex items-center gap-2 px-6 py-3 text-sm font-medium">
               Start Rating <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition-colors hover:border-cyan/50 hover:text-cyan">
+            <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition-colors hover:border-hive/50 hover:text-hive">
               View Dashboard
             </Link>
           </div>
@@ -94,7 +94,7 @@ export default function HomePage() {
             className="mb-10 text-center"
           >
             <h2 className="text-2xl font-bold text-white md:text-3xl">
-              Zero-Trust, <span className="text-cyan">Sealed Votes</span>
+              Zero-Trust, <span className="text-hive">Sealed Votes</span>
             </h2>
             <p className="mt-2 text-sm text-white/40">
               Your opinion is valuable. Protect it with cryptography.
@@ -113,7 +113,7 @@ export default function HomePage() {
                   transition={{ delay: i * 0.1 }}
                   className="glass-card"
                 >
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-cyan/10 text-cyan">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-hive/10 text-hive">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mb-1 text-sm font-semibold text-white">{step.title}</h3>
@@ -133,7 +133,7 @@ export default function HomePage() {
             className="mb-10 text-center"
           >
             <h2 className="text-2xl font-bold text-white md:text-3xl">
-              Contributor <span className="text-cyan">Tiers</span>
+              Contributor <span className="text-hive">Tiers</span>
             </h2>
             <p className="mt-2 text-sm text-white/40">
               Higher reputation = higher rewards. Pure meritocracy.
@@ -151,7 +151,7 @@ export default function HomePage() {
             className="mb-10 text-center"
           >
             <h2 className="text-2xl font-bold text-white md:text-3xl">
-              Top <span className="text-cyan">Earners</span>
+              Top <span className="text-hive">Earners</span>
             </h2>
             <p className="mt-2 text-sm text-white/40">
               The hive&apos;s sharpest raters, ranked by {TOKEN.symbol} earned.
@@ -163,7 +163,7 @@ export default function HomePage() {
         {/* Trust strip */}
         <section className="mx-auto max-w-3xl px-4 py-16">
           <div className="glass-card flex flex-col items-center gap-2 text-center">
-            <Lock className="h-6 w-6 text-cyan" />
+            <Lock className="h-6 w-6 text-hive" />
             <p className="font-medium text-white">Sealed by cryptography</p>
             <p className="text-xs text-white/40">
               Every vote is encrypted before it leaves your browser. Consensus is computed

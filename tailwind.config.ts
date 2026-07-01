@@ -15,29 +15,38 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Hivemind design tokens
+        // Hivemind design tokens — Yellow/Dark Tech Theme
         void: "#000000",
         abyss: "#0a0a0f",
         slate9: "#0f172a",
+        // Primary accent: Hive Yellow/Gold
+        hive: {
+          DEFAULT: "#facc15", // yellow-400
+          glow: "#fbbf24",      // amber-400
+          deep: "#ca8a04",      // yellow-600
+          light: "#fef08a",     // yellow-200
+          dark: "#a16207",     // yellow-700
+        },
+        // Legacy cyan mapping for backward compat (components still use cyan- classes)
         cyan: {
-          DEFAULT: "#00f0ff",
-          glow: "#22d3ee",
-          deep: "#0891b2",
+          DEFAULT: "#facc15",
+          glow: "#fbbf24",
+          deep: "#ca8a04",
         },
         alert: "#ff0044",
         ok: "#22c55e",
-        border: "hsl(240 10% 18%)",
-        input: "hsl(240 10% 18%)",
-        ring: "#00f0ff",
-        background: "hsl(240 10% 4%)",
+        border: "hsl(45 10% 18%)",
+        input: "hsl(45 10% 18%)",
+        ring: "#facc15",
+        background: "hsl(45 10% 4%)",
         foreground: "hsl(0 0% 98%)",
         primary: {
-          DEFAULT: "#00f0ff",
+          DEFAULT: "#facc15",
           foreground: "#000000",
         },
         muted: {
-          DEFAULT: "hsl(240 10% 14%)",
-          foreground: "hsl(240 5% 65%)",
+          DEFAULT: "hsl(45 10% 14%)",
+          foreground: "hsl(45 5% 65%)",
         },
         card: {
           DEFAULT: "rgba(255,255,255,0.04)",
@@ -54,18 +63,18 @@ const config: Config = {
         "2xl": "1.25rem",
       },
       boxShadow: {
-        glow: "0 0 20px rgba(0,240,255,0.35), 0 0 40px rgba(0,240,255,0.15)",
-        "glow-lg": "0 0 30px rgba(0,240,255,0.5), 0 0 80px rgba(0,240,255,0.25)",
-        "glow-sm": "0 0 12px rgba(0,240,255,0.3)",
+        glow: "0 0 20px rgba(250,204,21,0.35), 0 0 40px rgba(250,204,21,0.15)",
+        "glow-lg": "0 0 30px rgba(250,204,21,0.5), 0 0 80px rgba(250,204,21,0.25)",
+        "glow-sm": "0 0 12px rgba(250,204,21,0.3)",
       },
       backgroundImage: {
-        "radial-fade": "radial-gradient(circle at 50% 0%, rgba(0,240,255,0.08), transparent 60%)",
-        "void-gradient": "linear-gradient(180deg, #000000 0%, #0a0a0f 100%)",
+        "radial-fade": "radial-gradient(circle at 50% 0%, rgba(250,204,21,0.08), transparent 60%)",
+        "void-gradient": "linear-gradient(180deg, #000000 0%, #0a0a05 100%)",
       },
       keyframes: {
         "pulse-glow": {
-          "0%, 100%": { opacity: "1", boxShadow: "0 0 12px rgba(0,240,255,0.3)" },
-          "50%": { opacity: "0.6", boxShadow: "0 0 24px rgba(0,240,255,0.6)" },
+          "0%, 100%": { opacity: "1", boxShadow: "0 0 12px rgba(250,204,21,0.3)" },
+          "50%": { opacity: "0.6", boxShadow: "0 0 24px rgba(250,204,21,0.6)" },
         },
         "fade-up": {
           "0%": { opacity: "0", transform: "translateY(12px)" },
