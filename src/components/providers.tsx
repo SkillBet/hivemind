@@ -15,7 +15,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "@rainbow-me/rainbowkit/styles.css";
 
-const PROJECT_ID = "hivemind-default-00112233"; // Replace with walletconnect.org project id for prod
+const PROJECT_ID = "9ccd27552b663fce44ef032ccd0794d6"; // Replace with walletconnect.org project id for prod
 
 export function Providers({ children }: { children: ReactNode }) {
   const queryClient = useMemo(() => new QueryClient(), []);
